@@ -1,0 +1,12 @@
+ros-humble-mrt-cmake-modules
+ros-humble-lanelet2-core
+ros-humble-lanelet2-io
+ros-humble-lanelet2-traffic-rules
+ros-humble-lanelet2-maps
+ros-humble-lanelet2-projection
+ros-humble-lanelet2-routing
+ros-humble-lanelet2-matching
+ros-humble-lanelet2-validation
+ros-humble-lanelet2-python
+ros-humble-lanelet2-examples
+ros-humble-lanelet2

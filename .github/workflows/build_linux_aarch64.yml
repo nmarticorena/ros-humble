@@ -1,0 +1,88 @@
+jobs:
+  stage_0_job_0:
+    name: mrt-cmake-modules lanelet2-core
+    runs-on: cirun-linux-aarch64--${{ github.run_id }}
+    strategy:
+      fail-fast: false
+    needs: []
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Build ros-humble-mrt-cmake-modules ros-humble-lanelet2-core
+      env:
+        ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+        CURRENT_RECIPES: ros-humble-mrt-cmake-modules ros-humble-lanelet2-core
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      run: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_linux.sh
+  stage_1_job_1:
+    name: lanelet2-io lanelet2-traffic-rules lanelet2-maps
+    runs-on: cirun-linux-aarch64--${{ github.run_id }}
+    strategy:
+      fail-fast: false
+    needs:
+    - stage_0_job_0
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Build ros-humble-lanelet2-io ros-humble-lanelet2-traffic-rules ros-humble-lanelet2-maps
+      env:
+        ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+        CURRENT_RECIPES: ros-humble-lanelet2-io ros-humble-lanelet2-traffic-rules
+          ros-humble-lanelet2-maps
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      run: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_linux.sh
+  stage_2_job_2:
+    name: lanelet2-projection lanelet2-routing lanelet2-matching lanelet2-validation
+    runs-on: cirun-linux-aarch64--${{ github.run_id }}
+    strategy:
+      fail-fast: false
+    needs:
+    - stage_1_job_1
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Build ros-humble-lanelet2-projection ros-humble-lanelet2-routing ros-humble-lanelet2-matching
+        ros-humble-lanelet2-validation
+      env:
+        ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+        CURRENT_RECIPES: ros-humble-lanelet2-projection ros-humble-lanelet2-routing
+          ros-humble-lanelet2-matching ros-humble-lanelet2-validation
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      run: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_linux.sh
+  stage_3_job_3:
+    name: lanelet2-python lanelet2-examples lanelet2
+    runs-on: cirun-linux-aarch64--${{ github.run_id }}
+    strategy:
+      fail-fast: false
+    needs:
+    - stage_2_job_2
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Build ros-humble-lanelet2-python ros-humble-lanelet2-examples ros-humble-lanelet2
+      env:
+        ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_API_TOKEN }}
+        CURRENT_RECIPES: ros-humble-lanelet2-python ros-humble-lanelet2-examples ros-humble-lanelet2
+        DOCKER_IMAGE: condaforge/linux-anvil-aarch64
+      run: |
+        export CI=azure
+        export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
+        export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})
+        .scripts/build_linux.sh
+name: build_linux
+on:
+  push:
+    branches:
+    - buildbranch_linux_aarch64
