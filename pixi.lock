@@ -3199,20 +3199,6 @@ packages:
   purls: []
   size: 754247
   timestamp: 1731710681163
-- pypi: ../vinca
-  name: vinca
-  version: 0.0.4
-  sha256: a6e329551c829eed4d0f775541bfd874f027fc92700e2fb48888fffb75125346
-  requires_dist:
-  - catkin-pkg>=0.4.16
-  - ruamel-yaml>=0.16.6,<0.18.0
-  - rosdistro>=0.8.0
-  - empy>=3.3.4,<4.0.0
-  - requests>=2.24.0
-  - networkx>=2.5
-  - rich>=10
-  requires_python: '>=3.6'
-  editable: true
 - pypi: git+https://github.com/RoboStack/vinca.git@aa102b280adcad0374e4d231b25d21bf0db27d61
   name: vinca
   version: 0.0.4
