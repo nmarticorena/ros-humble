@@ -33,8 +33,9 @@ jobs:
 
     - uses: prefix-dev/setup-pixi@v0.8.1
       with:
-        environments: beta
+        environments: beta emscripten
         frozen: true
+
 
     # Workaround for https://github.com/RoboStack/ros-humble/pull/141#issuecomment-1941919816
     - name: Clean up PATH
