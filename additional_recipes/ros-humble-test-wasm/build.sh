@@ -98,9 +98,9 @@ if [[ $target_platform =~ emscripten.* ]]; then
   fi;
 
   # export USE_WASM=ON
-  # export Python_EXECUTABLE="$BUILD_PREFIX/bin/python"
-  # export Python_INCLUDE_DIR="$PREFIX/include/python3.11"
-  # export Python_LIBRARY="$PREFIX/lib/python3.11"
+  export Python_EXECUTABLE="$BUILD_PREFIX/bin/python"
+  export Python_INCLUDE_DIR="$PREFIX/include/python3.11"
+  export Python_LIBRARY="$PREFIX/lib/python3.11"
   # -DTHREADS_PREFER_PTHREAD_FLAG=TRUE\
   # -DPython_SITELIB=$SP_DIR          \
   export EXTRA_CMAKE_ARGS=" \
