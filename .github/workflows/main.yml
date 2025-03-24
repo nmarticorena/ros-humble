@@ -124,7 +124,7 @@ jobs:
     # Generate recipes for Linux ARM64
     - name: Reset repo
       run: |
-        git reset --hard origin/main
+        git reset --hard origin/test-emscripten-pr
     - name: Generate recipes for linux-aarch64
       run: |
         git clean -fdx
