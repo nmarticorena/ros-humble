@@ -16,7 +16,7 @@ build:
     build.sh
   number: 12
   skip:
-    - not emscripten
+    - not emscripten-wasm32
 
 about:
   homepage: https://www.ros.org/

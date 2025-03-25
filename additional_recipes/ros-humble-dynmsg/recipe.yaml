@@ -17,7 +17,7 @@ build:
   script:
     build.sh
   skip:
-    - not emscripten
+    - not emscripten-wasm32
 
 requirements:
   build:
